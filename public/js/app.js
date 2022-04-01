@@ -9,11 +9,12 @@ weatherForm.addEventListener('submit', (e) => {
     const location = search.value;
     if (!location.length) return message1.textContent = 'Please provide the location!';
     message1.textContent = 'Loading...';
-    fetch(`http://api.weatherstack.com/current?access_key=23cf270ceec711762d56f9d1ac5b5e2f&query=${location}`).then((response) => {
+    message2.textContent = '';
+    fetch(`/weather?search=${location}`).then((response) => {
         response.json().then((data) => {
             if (data.error) return message1.textContent = 'Please provide the valid location!';
-            message1.textContent = `city: ${data.location.name}, country: ${data.location.country}`;
-            message2.textContent = `temperature: ${data.current.temperature}, wind_speed: ${data.current.wind_speed}`;
+            message1.textContent = `city: ${data.city}, country: ${data.country}`;
+            message2.textContent = `Tips: ${data.tips}`;
         })
     });
 })
