@@ -1,13 +1,3 @@
-// console.log('Nice weather')
-// fetch('http://api.weatherstack.com/current?access_key=23cf270ceec711762d56f9d1ac5b5e2f&query=Shanghai').then((response) => {
-//         console.log(response)
-//         response.json().then((data) => {
-//             if (data.error) return console.log(data.error);
-//             console.log(data.current);
-//         })
-//     });
-
-
 const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
 const message1 = document.querySelector('#message-1');
