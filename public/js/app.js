@@ -10,18 +10,12 @@ weatherForm.addEventListener('submit', (e) => {
     if (!location.length) return message1.textContent = 'Please provide the location!';
     message1.textContent = 'Loading...';
     message2.textContent = '';
-    // fetch(`/weather?search=${location}`).then((response) => {
-    //     response.json().then((data) => {
-    //         if (data.error) return message1.textContent = 'Please provide the valid location!';
-    //         message1.textContent = `city: ${data.city}, country: ${data.country}`;
-    //         message2.textContent = `Tips: ${data.tips}`;
-    //     })
-    // });
-    fetch(`http://api.weatherstack.com/current?access_key=23cf270ceec711762d56f9d1ac5b5e2f&query=${location}`, {headers: {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36'}}).then((response) => {
+    fetch(`http://localhost:3000/weather?search=${location}`).then((response) => {
         response.json().then((data) => {
-            if (data.error) return message1.textContent = 'Please provide the valid location!';
-            message1.textContent = `city: ${data.location.city}, country: ${data.location.country}`;
-            message2.textContent = `Temperature: ${data.current.temperature}, Wind Speed: ${data.current.wind_speed}`;
+            if (data.error) return message1.textContent = 'Please provide a valid location!';
+            message1.textContent = `city: ${data.name}, region: ${data.region}, country: ${data.country}`;
+            message2.textContent = `Tips: ${data.tips}`;
         })
     });
+
 })

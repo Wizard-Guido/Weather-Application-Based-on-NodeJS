@@ -49,12 +49,12 @@ app.get('/weather', (req, res) => {
 
     const city = req.query.search;
     const url = `http://api.weatherstack.com/current?access_key=23cf270ceec711762d56f9d1ac5b5e2f&query=${city}`;
-    getweather(url, (error, tips, country) => {
+    getweather(url, (error, {name, region, country} = {}, { temperature, feelslike, wind_speed } = {}) => {
         if (error) return res.send({error: error});
-        if (tips) return res.send({city, tips, country});
+        res.send({name, region, country, tips: `The wind speed is ${wind_speed}. The temperature is ${temperature} celsius, but it feels like ${feelslike} celsius :)`});
     })
 
-})
+});
 
 app.get('/help/*', (req, res) => {
     res.render('404', {
